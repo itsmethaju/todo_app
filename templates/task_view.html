@@ -1,0 +1,54 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-floud">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="banner">
+                <div class="banner-text">
+                    <h1 style=" text-align: center  "> TODO</h1>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3 style="text-align: center">task_add</h3>
+            <form method="post" class="p-3 shadow">
+                {% csrf_token %}
+                <div class="form_group">
+                    <input type="text" name="name" class="form-control" placeholder="name of the task...">
+                </div>
+                <div class="form_group">
+                    <input type="text" name="priority" class="form-control" placeholder="your priority">
+                </div>
+                 <div class="form_group">
+                    <input type="date" name="date" class="form-control" placeholder="your date">
+                </div>
+                <input type="submit" class="btn btn-success" value="submit">
+            </form>
+        </div>
+        <div class="col-md-12">
+            <h2 style=" text-align: center">task completed</h2>
+            {% for i in obj1 %}
+            <div class="shadow card">
+                <div class="card-body">
+                    <h5 class="card-title">{{i.name}}</h5>
+                    <p><b>{{i.priority}}</b></p>
+                    <p><b>{{i.date}}</b></p>
+                    <a class="btn btn-danger" href="{% url 'delete' i.id %}">delete</a>
+                    <a class="btn btn-success" href="{% url 'update' i.id %}">update</a>
+                </div>
+            </div>
+            <br>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+this is home page
